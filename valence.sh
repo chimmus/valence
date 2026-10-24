@@ -63,5 +63,8 @@ while true; do
   fi
 done
 
-echo "element [1] outershell: $input2/$input1"
-echo "element [2] outershell: $input4/$input3"
+el1=$(echo "scale=2; $input2 / $input1" | bc)
+el2=$(echo "scale=2; $input4 / $input3" | bc)
+
+echo "element [1] outershell: $input2/$input1 [$el1]"
+echo "element [2] outershell: $input4/$input3 [$el2]"
