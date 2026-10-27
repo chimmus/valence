@@ -5,6 +5,8 @@
 echo "0 if the shell is full"
 echo "----------------------"
 
+stable=0
+
 while true; do
   read -p "maximum electron in shell of [1] " input1
   if [[ "$input1" =~ ^[0-9]+$ ]]; then
@@ -63,8 +65,19 @@ while true; do
   fi
 done
 
+if [[ input4 == input3 ]]; then
+  stable=2
+fi
+if [[ input2 == input1 ]]; then
+  stable=1
+fi
+
 el1=$(echo "scale=2; $input2 / $input1" | bc)
 el2=$(echo "scale=2; $input4 / $input3" | bc)
 
 echo "element [1] outershell: $input2/$input1 [$el1]"
 echo "element [2] outershell: $input4/$input3 [$el2]"
+
+if [[ stable != 0 ]]; then
+  echo "one of the elements is already stable"
+fi
